@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+.listproducts{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem ;
+}
+.products{
+  display: grid;
+  
+  border: solid red;
+  grid-gap: 10px;
+
+}
