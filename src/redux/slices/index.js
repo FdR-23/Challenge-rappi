@@ -14,24 +14,28 @@ export const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        filterByPrice: (state, actions) => {
+        orderByPrice: (state, actions) => {
             console.log(actions.payload)
 
+            const regex = /[$,]/g;
             const filterPrice = actions.payload === "Mayor Precio" ?
                 state.products.sort(function (a, b) {
-                    if (a.price < b.price) return -1
-                    if (a.price > b.price) return 1
+                    a = a.price.replace(regex, "")
+                    b = b.price.replace(regex, "")
+                    if (Number(a) > Number(b)) return -1
+                    if (Number(a) < Number(b)) return 1
                     else return 0
                 }) :
-                 state.products.sort(function (a, b) {
-                    if (a.price < b.price) return 1
-                    if (a.price > b.price) return -1
+                state.products.sort(function (a, b) {
+                    a = a.price.replace(regex, "")
+                    b = b.price.replace(regex, "")
+                    if (Number(a) < Number(b)) return -1
+                    if (Number(a) > Number(b)) return 1
                     else return 0
                 })
             state.products = [...filterPrice]
         },
-        filterByQuantity: (state, actions) => {
-            console.log(actions.payload)
+        orderByQuantity: (state, actions) => {
 
             const filterQuantity = actions.payload === "Mayor Cantidad" ?
                 state.products.sort(function (a, b) {
@@ -45,17 +49,16 @@ export const productsSlice = createSlice({
                 })
             state.products = [...filterQuantity]
         },
-        filterByAvailability: (state, actions) => {
-            console.log(actions.payload)
+        orderByAvailability: (state, actions) => {
 
             const filterAvailability = actions.payload === "Disponible" ?
                 state.products.sort(function (a, b) {
                     if (a.available === true) return -1
-                else if  (b.available === true) return 1
+                    else if (b.available === true) return 1
                     else return 0
                 }) : state.products.sort(function (a, b) {
                     if (a.available === true) return 1
-                else if  (b.available === true) return -1
+                    else if (b.available === true) return -1
                     else return 0
                 })
             state.products = [...filterAvailability]
@@ -65,6 +68,6 @@ export const productsSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { filterByPrice, filterByQuantity, filterByAvailability } = productsSlice.actions
+export const { orderByPrice, orderByQuantity, orderByAvailability } = productsSlice.actions
 
 export default productsSlice.reducer

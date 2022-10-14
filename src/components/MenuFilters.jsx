@@ -1,27 +1,45 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { filterByPrice, filterByQuantity, filterByAvailability } from '../redux/slices/index.js';
+import { orderByPrice, orderByQuantity, orderByAvailability } from '../redux/slices/index.js';
 
 function MenuFilters() {
+    const dispatch = useDispatch();
 
-    const OrderbyPrice = ["Mayor Precio", "Menor Precio"]
-    const OrderbyQuantity = ["Mayor Cantidad", "Menor Cantidad"]
-    const OrderbyAvailability = ["Disponible", "No Disponible"]
+    const OrderPrice = ["Mayor Precio", "Menor Precio"]
+    const OrderQuantity = ["Mayor Cantidad", "Menor Cantidad"]
+    const OrderAvailability = ["Disponible", "No Disponible"]
+
+
+    const handleOrderPricer = (e) => {
+        dispatch(orderByPrice(e.name))
+    }
+    const handleOrderQuantity = (e) => {
+        dispatch(orderByQuantity(e.name))
+    }
+
+    const handleOrderAvailabilty = (e) => {
+        dispatch(orderByAvailability(e.name))
+    }
+
+
 
     return (
         <div>
             <DropdownMenu
                 text={'Ordernar por Precio'}
-                nameItem={OrderbyPrice}
+                nameItem={OrderPrice}
+                onClick={handleOrderPricer}
             />
             <DropdownMenu
                 text={'Ordernar por Cantidad'}
-                nameItem={OrderbyQuantity}
+                nameItem={OrderQuantity}
+                onClick={handleOrderQuantity}
             />
             <DropdownMenu
                 text={'Ordernar por Disponibilidad'}
-                nameItem={OrderbyAvailability}
+                nameItem={OrderAvailability}
+                onClick={handleOrderAvailabilty}
             />
         </div>
     )
@@ -31,7 +49,7 @@ export default MenuFilters
 
 
 
-function DropdownMenu({ text, nameItem }) {
+function DropdownMenu({ text, nameItem, onClick }) {
     const [open, setOpen] = useState();
 
     const handleToggle = () => {
@@ -41,26 +59,19 @@ function DropdownMenu({ text, nameItem }) {
         <ul>
             <p> {text} <button onClick={() => handleToggle()}>{open ? "close" : "open"}</button></p>
             {open && nameItem.map((e, index) =>
-                <DropdownItem name={e} key={index} />)}
+                <DropdownItem name={e} key={index} onClick={onClick} />)}
 
         </ul>
     )
 }
 
 
-function DropdownItem({ name }) {
-    const dispatch = useDispatch();
+function DropdownItem({ name, onClick }) {
 
-
-    const handleClick = (e) => {
-        dispatch(filterByPrice(e.name))
-        dispatch(filterByQuantity(e.name))
-        dispatch(filterByAvailability(e.name))
-    }
     return (
         <li >
             <div >
-                <span onClick={(e) => handleClick({ name })}>{name}</span>
+                <span onClick={() => onClick({ name })}>{name}</span>
             </div>
 
         </li >
