@@ -8,15 +8,73 @@ import data_p from '../../data/products.json'
 const initialState = {
     categories: data_c.categories,
     products: data_p.products,
+    cart: []
 }
 
 export const productsSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        orderByPrice: (state, actions) => {
-            console.log(actions.payload)
+        addCart: (state, actions) => {
+            const { id, quantity, price } = actions.payload
+            actions.payload.price = price * quantity;
+            const foundInCart = state.cart.find(product => product.id === id)
 
+            if (foundInCart) {
+                return {
+                    ...state,
+                    cart: state.cart.map((item) =>
+                        item.id === id ? {
+                            ...item, quantity: Number(item.quantity) + Number(quantity),
+                            price: price * (Number(item.quantity) + Number(quantity))
+                        } : item),
+                    products: state.products.map((item) =>
+                        item.id === id ? { ...item, quantity: item.quantity - actions.payload.quantity } : item)
+                }
+            } else {
+                return {
+                    ...state,
+                    cart: [...state.cart, actions.payload],
+                    products: state.products.map((item) =>
+                        item.id === id ? { ...item, quantity: item.quantity - actions.payload.quantity } : item)
+                }
+            }
+        },
+
+        decrementQuantity: (state, actions) => {
+            const { id } = actions.payload
+            const foundInCart = state.cart.find(product => product.id === id)
+            if (foundInCart) {
+                return {
+                    ...state,
+                    cart: state.cart.map((item) =>
+                        item.id === id ? {
+                            ...item, quantity: Number(item.quantity) - 1,
+                            price: ((item.price * (item.quantity - 1)) / foundInCart.quantity)
+                        } : item),
+                    products: state.products.map((item) =>
+                        item.id === id ? { ...item, quantity: item.quantity + 1 } : item)
+                }
+            }
+        },
+        incrementQuantity: (state, actions) => {
+            const { id } = actions.payload
+            const foundInCart = state.cart.find(product => product.id === id)
+
+            if (foundInCart) {
+                return {
+                    ...state,
+                    cart: state.cart.map((item) =>
+                        item.id === id ? {
+                            ...item, quantity: Number(item.quantity) + 1,
+                            price: ((item.price * (item.quantity + 1)) / foundInCart.quantity)
+                        } : item),
+                    products: state.products.map((item) =>
+                        item.id === id ? { ...item, quantity: item.quantity - 1 } : item)
+                }
+            }
+        },
+        orderByPrice: (state, actions) => {
             const regex = /[$,]/g;
             const filterPrice = actions.payload === "Mayor Precio" ?
                 state.products.sort(function (a, b) {
@@ -63,11 +121,15 @@ export const productsSlice = createSlice({
                 })
             state.products = [...filterAvailability]
         },
-
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { orderByPrice, orderByQuantity, orderByAvailability } = productsSlice.actions
+export const {
+    orderByPrice,
+    orderByQuantity,
+    orderByAvailability,
+    addCart, 
+    decrementQuantity, incrementQuantity } = productsSlice.actions
 
 export default productsSlice.reducer
