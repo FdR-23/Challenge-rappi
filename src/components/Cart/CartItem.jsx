@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { decrementQuantity, incrementQuantity} from '../../redux/slices/index.js'
+import { decrementQuantity, incrementQuantity, deletItemCart } from '../../redux/slices/index.js'
 
 function CartItem({ product }) {
   const dispatch = useDispatch()
@@ -20,7 +20,9 @@ function CartItem({ product }) {
     dispatch(decrementQuantity(id))
   }
 
-
+  const handleDeletItem = (id) => {
+    dispatch(deletItemCart(id))
+  }
 
   return (
     <div>
@@ -37,7 +39,7 @@ function CartItem({ product }) {
         </div>
         <h3>Precio <span>$ {output}</span></h3>
       </article>
-      <button >eliminar product</button>
+      <button onClick={() => handleDeletItem({id})}>eliminar product</button>
     </div>
   )
 }

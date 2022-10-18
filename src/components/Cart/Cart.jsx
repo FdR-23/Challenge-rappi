@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import CartItem from './CartItem'
 
@@ -6,11 +6,13 @@ function Cart() {
 
   const { cart } = useSelector(state => state.products)
 
-console.log(cart)
-
   const price = cart && cart.map((product) => product.price)
   const sumAllPrices = price.length === 0 ? 0 : price.reduce((acc, value) => acc + value)
   const totalPrices = new Intl.NumberFormat('en-US').format(sumAllPrices);
+
+  useEffect(() => {
+    window.localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart])
 
 
 
@@ -23,9 +25,9 @@ console.log(cart)
             product={product} />
         )}
       </div>
-       <div>
-          <h3>Total Precio <span>$ {totalPrices}</span></h3>
-        </div>
+      <div>
+        <h3>Total Precio <span>$ {totalPrices}</span></h3>
+      </div>
     </div>
   )
 }

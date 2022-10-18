@@ -17,7 +17,6 @@ function Product({ product }) {
         id
     } = product
 
-
     const handleChange = (e) => {
         e.preventDefault();
         if (e.target.value <= 0 || e.target.value > quantity) {
@@ -45,8 +44,6 @@ function Product({ product }) {
             setInput(1)
         }
     }
-
-
 
     return (
         <div className='products'>

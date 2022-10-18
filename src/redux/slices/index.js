@@ -4,11 +4,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import data_c from '../../data/categories.json'
 import data_p from '../../data/products.json'
 
-
+const localStorageCart = window.localStorage.getItem('cart')
+const cart = JSON.parse(localStorageCart)
+console.log(cart)
 const initialState = {
     categories: data_c.categories,
     products: data_p.products,
-    cart: []
+    cart: cart,
 }
 
 export const productsSlice = createSlice({
@@ -16,6 +18,7 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {
         addCart: (state, actions) => {
+            console.log(actions.type)
             const { id, quantity, price } = actions.payload
             actions.payload.price = price * quantity;
             const foundInCart = state.cart.find(product => product.id === id)
@@ -36,7 +39,22 @@ export const productsSlice = createSlice({
                     ...state,
                     cart: [...state.cart, actions.payload],
                     products: state.products.map((item) =>
-                        item.id === id ? { ...item, quantity: item.quantity - actions.payload.quantity } : item)
+                        item.id === id ? { ...item, quantity: Number(item.quantity) - Number(actions.payload.quantity) } : item)
+                }
+            }
+        },
+
+        deletItemCart: (state, actions) => {
+            const { id } = actions.payload
+            const copyCart = [...state.cart]
+            const foundInCart = copyCart.find(product => product.id === id)
+            if (foundInCart) {
+                const filterCart = copyCart.filter((element) => element.id !== foundInCart.id)
+                return {
+                    ...state,
+                    cart: [...filterCart],
+                    products: state.products.map((item) =>
+                        item.id === foundInCart.id ? { ...item, quantity: Number(item.quantity) + Number(foundInCart.quantity) } : item)
                 }
             }
         },
@@ -129,7 +147,7 @@ export const {
     orderByPrice,
     orderByQuantity,
     orderByAvailability,
-    addCart, 
+    addCart, deletItemCart,
     decrementQuantity, incrementQuantity } = productsSlice.actions
 
 export default productsSlice.reducer
