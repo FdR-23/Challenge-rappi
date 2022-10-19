@@ -6,7 +6,7 @@ import data_p from '../../data/products.json'
 
 const localStorageCart = window.localStorage.getItem('cart')
 const cart = JSON.parse(localStorageCart)
-console.log(cart)
+
 const initialState = {
     categories: data_c.categories,
     products: data_p.products,
@@ -92,6 +92,9 @@ export const productsSlice = createSlice({
                 }
             }
         },
+        filterByNameCartegories: (state, actions) => {
+            console.log(actions.payload)
+        },
         orderByPrice: (state, actions) => {
             const regex = /[$,]/g;
             const filterPrice = actions.payload === "Mayor Precio" ?
@@ -144,10 +147,12 @@ export const productsSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+    addCart, deletItemCart,
+    decrementQuantity, incrementQuantity,
     orderByPrice,
     orderByQuantity,
     orderByAvailability,
-    addCart, deletItemCart,
-    decrementQuantity, incrementQuantity } = productsSlice.actions
+    filterByNameCartegories,
+} = productsSlice.actions
 
 export default productsSlice.reducer

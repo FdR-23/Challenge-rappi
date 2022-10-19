@@ -29,17 +29,17 @@ function MenuFilters() {
             <DropdownMenu
                 text={'Ordernar por Precio'}
                 nameItem={OrderPrice}
-                onClick={handleOrderPricer}
+                handleOrderPricer={handleOrderPricer}
             />
             <DropdownMenu
                 text={'Ordernar por Cantidad'}
                 nameItem={OrderQuantity}
-                onClick={handleOrderQuantity}
+                handleOrderPricer={handleOrderQuantity}
             />
             <DropdownMenu
                 text={'Ordernar por Disponibilidad'}
                 nameItem={OrderAvailability}
-                onClick={handleOrderAvailabilty}
+                handleOrderPricer={handleOrderAvailabilty}
             />
         </div>
     )
@@ -49,7 +49,7 @@ export default MenuFilters
 
 
 
-function DropdownMenu({ text, nameItem, onClick }) {
+function DropdownMenu({ text, nameItem, handleOrderPricer }) {
     const [open, setOpen] = useState();
 
     const handleToggle = () => {
@@ -59,19 +59,19 @@ function DropdownMenu({ text, nameItem, onClick }) {
         <ul>
             <p> {text} <button onClick={() => handleToggle()}>{open ? "close" : "open"}</button></p>
             {open && nameItem.map((e, index) =>
-                <DropdownItem name={e} key={index} onClick={onClick} />)}
+                <DropdownItem name={e} key={index} handleOrderPricer={handleOrderPricer} />)}
 
         </ul>
     )
 }
 
 
-function DropdownItem({ name, onClick }) {
+function DropdownItem({ name, handleOrderPricer }) {
 
     return (
         <li >
             <div >
-                <span onClick={() => onClick({ name })}>{name}</span>
+                <span onClick={() => handleOrderPricer({ name })}>{name}</span>
             </div>
 
         </li >
