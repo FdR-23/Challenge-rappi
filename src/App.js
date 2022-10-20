@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 
 import ListProducts from './components/ListProducts.jsx'
-import MenuFilters from './components/MenuFilters.jsx';
+import MenuFilters from './components/MenuFilter/MenuFilters.jsx';
 import Menu from './components/Menu/Menu.jsx';
 import Cart from './components/Cart/Cart.jsx'
 function App() {

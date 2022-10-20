@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import Dropdown from './Dropdown';
 
 import { useDispatch } from 'react-redux';
-
-import { filterByNameCartegories } from '../../redux/slices/index.js'
+import { filterByCartegories } from '../../redux/slices/index.js'
 
 function MenuItems({ category }) {
-
+const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
 
     //guarda el nobmre de cada categoria para poder filtrar los productos
+
+
     const handleClickName = (name)=>{
-        console.log(name)
-        
+        dispatch(filterByCartegories(name))
     }
 
     const handleToggle = () => {
@@ -21,7 +21,8 @@ function MenuItems({ category }) {
     return (
         <li>
             {category.sublevels && (<div >
-                <button onClick={(e) => handleToggle(e)}><a onClick={()=>handleClickName(category.name)}> {category.name}</a>  </button>
+                <button onClick={(e) => handleToggle(e)}><a 
+                    onClick={()=>handleClickName(category.id)}>{category.name}</a></button>
                 {open && <Dropdown
                     submenus={category.sublevels}
                     handleClickName={handleClickName} />}

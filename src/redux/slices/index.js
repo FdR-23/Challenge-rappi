@@ -10,6 +10,7 @@ const cart = JSON.parse(localStorageCart)
 const initialState = {
     categories: data_c.categories,
     products: data_p.products,
+    copyOfProducts: data_p.products,
     cart: cart,
 }
 
@@ -18,7 +19,6 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {
         addCart: (state, actions) => {
-            console.log(actions.type)
             const { id, quantity, price } = actions.payload
             actions.payload.price = price * quantity;
             const foundInCart = state.cart.find(product => product.id === id)
@@ -92,8 +92,61 @@ export const productsSlice = createSlice({
                 }
             }
         },
-        filterByNameCartegories: (state, actions) => {
-            console.log(actions.payload)
+
+        filterByCartegories: (state, actions) => {
+            const foundinCatergorie = state.copyOfProducts.find(product => product.sublevel_id === actions.payload)
+            if (foundinCatergorie) {
+                return {
+                    ...state,
+                    products: state.copyOfProducts.filter((product) => product.sublevel_id === actions.payload)
+                }
+            }
+        },
+        filterByRangePrice: (state, actions) => {
+            const { to, from } = actions.payload
+            const regex = /[$,]/g;
+            return {
+                ...state,
+                products: state.copyOfProducts.filter((product) => {
+                    let newprice = product.price.replace(regex, "")
+                    if (!from) {
+                        return Number(newprice) > Number(to)
+                    } else if (!to) {
+                        return Number(newprice) < Number(from)
+                    } else {
+                        return Number(newprice) > Number(to) && Number(newprice) < Number(from)
+
+                    }
+                })
+            }
+        },
+
+        filterByAvailability: (state, actions) => {
+            const filterAvailability = actions.payload === 'All Products' ?
+                state.copyOfProducts :
+                actions.payload === 'Disponible' ?
+                    state.copyOfProducts.filter((products) => products.available === true) :
+                    state.copyOfProducts.filter((products) => products.available === false)
+
+            return {
+                ...state,
+                products: [...filterAvailability]
+            }
+        },
+        filterByRangeQuantity: (state, actions) => {
+            const { min, max } = actions.payload
+            return {
+                ...state,
+                products: state.copyOfProducts.filter((product) => {
+                    if (!max) {
+                        return product.quantity > Number(min)
+                    } else if (!min) {
+                        return product.quantity < Number(max)
+                    } else {
+                        return product.quantity > Number(min) && product.quantity < Number(max)
+                    }
+                })
+            }
         },
         orderByPrice: (state, actions) => {
             const regex = /[$,]/g;
@@ -115,7 +168,6 @@ export const productsSlice = createSlice({
             state.products = [...filterPrice]
         },
         orderByQuantity: (state, actions) => {
-
             const filterQuantity = actions.payload === "Mayor Cantidad" ?
                 state.products.sort(function (a, b) {
                     if (a.quantity < b.quantity) return 1
@@ -130,7 +182,7 @@ export const productsSlice = createSlice({
         },
         orderByAvailability: (state, actions) => {
 
-            const filterAvailability = actions.payload === "Disponible" ?
+            const orderAvailability = actions.payload === "Disponible" ?
                 state.products.sort(function (a, b) {
                     if (a.available === true) return -1
                     else if (b.available === true) return 1
@@ -140,19 +192,16 @@ export const productsSlice = createSlice({
                     else if (b.available === true) return -1
                     else return 0
                 })
-            state.products = [...filterAvailability]
+            state.products = [...orderAvailability]
         },
     },
 })
 
 // Action creators are generated for each case reducer function
 export const {
-    addCart, deletItemCart,
-    decrementQuantity, incrementQuantity,
-    orderByPrice,
-    orderByQuantity,
-    orderByAvailability,
-    filterByNameCartegories,
+    addCart, deletItemCart, decrementQuantity, incrementQuantity,
+    orderByPrice, orderByQuantity, orderByAvailability,
+    filterByCartegories, filterByRangePrice, filterByAvailability, filterByRangeQuantity
 } = productsSlice.actions
 
 export default productsSlice.reducer

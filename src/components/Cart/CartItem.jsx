@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { decrementQuantity, incrementQuantity, deletItemCart } from '../../redux/slices/index.js'
+import { decrementQuantity, incrementQuantity, deletItemCart, } from '../../redux/slices/index.js'
 
 function CartItem({ product }) {
   const dispatch = useDispatch()

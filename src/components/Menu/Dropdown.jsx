@@ -4,9 +4,6 @@ import MenuItems from './MenuItems';
 
 
 function Dropdown({ submenus, handleClickName }) {
-
-
-
     return (
         <ul >
             {submenus && submenus.map((submenu, index) => (
@@ -15,7 +12,7 @@ function Dropdown({ submenus, handleClickName }) {
                     category={submenu}
                 /> :
                     <li key={index}>
-                        <a onClick={()=>handleClickName(submenu.name)}>{submenu.name}</a>
+                        <a onClick={()=>handleClickName(submenu.id)}>{submenu.name}</a>
                     </li>
             ))}
         </ul>
