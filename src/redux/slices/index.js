@@ -92,7 +92,13 @@ export const productsSlice = createSlice({
                 }
             }
         },
+        buyProductsInCart: (state, actions) => {
 
+            return {
+                ...state,
+                cart: []
+            }
+        },
         filterByCartegories: (state, actions) => {
             const foundinCatergorie = state.copyOfProducts.find(product => product.sublevel_id === actions.payload)
             if (foundinCatergorie) {
@@ -199,7 +205,7 @@ export const productsSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-    addCart, deletItemCart, decrementQuantity, incrementQuantity,
+    addCart, deletItemCart, decrementQuantity, incrementQuantity, buyProductsInCart,
     orderByPrice, orderByQuantity, orderByAvailability,
     filterByCartegories, filterByRangePrice, filterByAvailability, filterByRangeQuantity
 } = productsSlice.actions

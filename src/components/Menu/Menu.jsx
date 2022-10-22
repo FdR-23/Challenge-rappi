@@ -6,17 +6,15 @@ import MenuItems from './MenuItems'
 function Menu() {
     const { categories } = useSelector(state => state.products)
     return (
-     
-        <ul className='w-full bg-blue-800 display flex justify-evenly'>
-            
+
+        <div className='flex flex-row sm:p-1'>
             {categories && categories.map((element, index) =>
                 <MenuItems
                     key={index}
                     category={element}
-
                 />
             )}
-        </ul>
+        </div>
     )
 }
 

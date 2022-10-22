@@ -5,7 +5,7 @@ import Product from './Product'
 function ListProducts({ products }) {
 
     return (
-        <div  className='listproducts'>
+        <div  className='flex flex-row flex-wrap justify-center '>
             {products && products.map((element) =>
                 <Product 
                     key={element.id}

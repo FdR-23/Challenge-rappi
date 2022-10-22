@@ -1,22 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
+import Home from './components/Home.jsx';
 
-import ListProducts from './components/ListProducts.jsx'
-import MenuFilters from './components/MenuFilter/MenuFilters.jsx';
-import Menu from './components/Menu/Menu.jsx';
-import Cart from './components/Cart/Cart.jsx'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Cart from './components/Cart/Cart.jsx';
+
 function App() {
-  const { products } = useSelector(state => state.products)
+
 
   return (
-    <div>
-      <Menu />
-      <MenuFilters />
-      <ListProducts
-        products={products} />
-
-      <Cart />
-    </div>
+    
+      <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path ="/cart" component={Cart} />
+      </Switch>
+      </Router>
+    
   );
 }
 
