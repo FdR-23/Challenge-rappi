@@ -15,9 +15,10 @@ function Cart() {
    const sumAllPrices = price.length === 0 ? 0 : price.reduce((acc, value) => acc + value,0)
   const totalPrices = new Intl.NumberFormat('en-US').format(sumAllPrices);
 
+
   useEffect(() => {
     window.localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart])
+  }, [])
 
   const handlebuyproducts = () => {
     dispatch(buyProductsInCart())
