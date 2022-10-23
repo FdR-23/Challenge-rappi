@@ -1,24 +1,24 @@
 import React from 'react';
-import Home from './components/Home.jsx';
 
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
 } from "react-router-dom";
 
+import Home from './components/Home.jsx';
 import Cart from './components/Cart/Cart.jsx';
 
 function App() {
 
   return (
-      <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact  path="/cart" component={Cart} />
-      </Switch>
-      </Router>
-    
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart/>} />
+      </Routes>
+    </Router>
+
   );
 }
 
