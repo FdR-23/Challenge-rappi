@@ -6,12 +6,12 @@ import data_p from '../../data/products.json'
 
 const localStorageCart = window.localStorage.getItem('cart')
 const cart = JSON.parse(localStorageCart)
-
+console.log(cart)
 const initialState = {
     categories: data_c.categories,
     products: data_p.products,
     copyOfProducts: data_p.products,
-    cart: [],
+    cart: cart ? cart : [],
 }
 
 export const productsSlice = createSlice({
@@ -21,7 +21,7 @@ export const productsSlice = createSlice({
         addCart: (state, actions) => {
             const { id, quantity, price } = actions.payload
             actions.payload.price = price * quantity;
-            
+
             const foundInCart = state.cart.find(product => product.id === actions.payload.id)
 
             if (foundInCart) {
