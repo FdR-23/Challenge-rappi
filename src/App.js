@@ -6,17 +6,16 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+
 import Cart from './components/Cart/Cart.jsx';
 
 function App() {
 
-
   return (
-    
       <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path ="/cart" component={Cart} />
+        <Route exact  path="/cart" component={Cart} />
       </Switch>
       </Router>
     

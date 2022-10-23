@@ -22,7 +22,6 @@ function Home() {
             <section className='bg-amber-500  border-x-2 border-b-4 border-b-orange-900 border-x-orange-900 rounded-b-2xl'>
                 <Navbar/>
             </section>
-
             <section className=' p-2'>
                 <div className={`${open ? 'absolute bg-amber-900/50  rounded-md items-center flex-col ' : 'none'} flex `}>
                     <MenuFilters
@@ -39,7 +38,6 @@ function Home() {
                     <ListProducts
                         products={products} />
                 </div>
-
             </section>
         </div>
     )
