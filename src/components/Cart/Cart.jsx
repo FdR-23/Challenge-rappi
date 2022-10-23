@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 
 function Cart() {
   const dispatch = useDispatch()
-  const { cart } = useSelector(state => state.products)
+  const cart  = useSelector(state => state.products.cart)
   const price = cart && cart.map((product) => product.price)
-  const sumAllPrices = price.length === 0 ? 0 : price.reduce((acc, value) => acc + value,0)
+   const sumAllPrices = price.length === 0 ? 0 : price.reduce((acc, value) => acc + value,0)
   const totalPrices = new Intl.NumberFormat('en-US').format(sumAllPrices);
 
   useEffect(() => {
