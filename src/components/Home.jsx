@@ -11,11 +11,9 @@ function Home() {
 
     const [open, setOpen] = useState(false);
 
-
     const handleToggle = () => {
         setOpen(!open)
     }
-
 
     return (
         <div className='flex flex-col '>

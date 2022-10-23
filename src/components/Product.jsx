@@ -27,7 +27,6 @@ function Product({ product }) {
         setInput(e.target.value)
     }
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         let newPrice = price.replace(regex, "")

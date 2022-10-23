@@ -13,21 +13,19 @@ function MenuItems({ category }) {
     }
 
     const handleToggle = () => {
-        window.innerWidth > 812 && setOpen(!open)
+        setOpen(!open)
 
     }
-    
   const onMouseEnter = () => {
-    window.innerWidth > 812 && setOpen(true);
+    window.innerWidth > 634 && setOpen(true) ; 
   };
 
   const onMouseLeave = () => {
-    window.innerWidth > 812 && setOpen(false);
+    window.innerWidth > 634 && setOpen(false);
   };
 
-
+console.log(window.innerWidth)
     return (
-
         <ul
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave} 
@@ -47,7 +45,7 @@ function MenuItems({ category }) {
                             />
                         </svg>
                     </button>
-                    {  window.innerWidth > 812 && open && <Dropdown
+                    {  window.innerWidth >= 635 && open && <Dropdown
                         submenus={category.sublevels}
                         handleClickName={handleClickName} />}
                 </div>)}

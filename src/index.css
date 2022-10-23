@@ -7,8 +7,6 @@
 
 
 body {
-
-  
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -17,8 +15,6 @@ body {
 
   @apply font-ubuntu max-w-screen-xl h-screen m-auto bg-amber-700
 }
-
-
 
 * {
   margin: 0;

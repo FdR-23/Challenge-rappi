@@ -5,7 +5,7 @@ import MenuItems from './MenuItems';
 
 function Dropdown({ submenus, handleClickName }) {
     return (
-        <li className=' fixed bg-white/20 justify-center items-center '>
+        <ul className=' fixed bg-white/20 justify-center items-center '>
             {submenus && submenus.map((submenu, index) => (
                 submenu.sublevels ? <MenuItems
                     key={index}
@@ -19,7 +19,7 @@ function Dropdown({ submenus, handleClickName }) {
                         onClick={()=>handleClickName(submenu.id)}>{submenu.name}</p>
                     </li>
             ))}
-        </li>
+        </ul>
     );
 };
 
