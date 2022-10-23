@@ -24,7 +24,6 @@ function MenuItems({ category }) {
     window.innerWidth > 634 && setOpen(false);
   };
 
-console.log(window.innerWidth)
     return (
         <ul
         onMouseEnter={onMouseEnter}

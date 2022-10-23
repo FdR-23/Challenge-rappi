@@ -10,7 +10,7 @@ function Cart() {
   const dispatch = useDispatch()
   const { cart } = useSelector(state => state.products)
   const price = cart && cart.map((product) => product.price)
-  const sumAllPrices = price.length === 0 ? 0 : price.reduce((acc, value) => acc + value)
+  const sumAllPrices = price?.length === 0 ? 0 : price.reduce((acc, value) => acc + value)
   const totalPrices = new Intl.NumberFormat('en-US').format(sumAllPrices);
 
   useEffect(() => {
