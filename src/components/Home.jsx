@@ -4,27 +4,23 @@ import Navbar from './Navbar'
 
 import MenuFilters from './MenuFilter/MenuFilters'
 import ListProducts from './ListProducts'
-import Cart from './Cart/Cart'
+
 function Home() {
 
     const { products } = useSelector(state => state.products)
 
     const [open, setOpen] = useState(false);
-    const [open1, setOpen1] = useState(false);
+
 
     const handleToggle = () => {
         setOpen(!open)
     }
 
-    const modalHandler = () => {
-        setOpen1(!open1)
-    }
 
     return (
         <div className='flex flex-col '>
             <section className='bg-amber-500  border-x-2 border-b-4 border-b-orange-900 border-x-orange-900 rounded-b-2xl'>
-                <Navbar
-                    modalHandler={modalHandler} />
+                <Navbar/>
             </section>
 
             <section className=' p-2'>

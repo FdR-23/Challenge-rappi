@@ -2,7 +2,7 @@ import React from 'react'
 import Menu from './Menu/Menu'
 import { Link } from 'react-router-dom'
 
-function Navbar({ modalHandler }) {
+function Navbar() {
     return (
         <div className='flex flex-col  justify-center items-center '>
             <span className=' invisible sm:visible sm:text-lg sm:font-bold '>Challenge Rappi</span>
