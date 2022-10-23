@@ -21,7 +21,7 @@ export const productsSlice = createSlice({
         addCart: (state, actions) => {
             const { id, quantity, price } = actions.payload
             actions.payload.price = price * quantity;
-            const foundInCart = state.cart.find(product => product.id === id)
+            const foundInCart = state.cart.find(product => product.id === actions.payload.id)
 
             if (foundInCart) {
                 return {
