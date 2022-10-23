@@ -11,7 +11,7 @@ const initialState = {
     categories: data_c.categories,
     products: data_p.products,
     copyOfProducts: data_p.products,
-    cart: cart,
+    cart: [],
 }
 
 export const productsSlice = createSlice({

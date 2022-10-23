@@ -18,7 +18,7 @@ function Cart() {
 
   useEffect(() => {
     window.localStorage.setItem("cart", JSON.stringify(cart));
-  }, [])
+  }, [cart])
 
   const handlebuyproducts = () => {
     dispatch(buyProductsInCart())
