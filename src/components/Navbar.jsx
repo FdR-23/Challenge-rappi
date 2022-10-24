@@ -6,12 +6,13 @@ function Navbar() {
     return (
         <div className='flex flex-col  justify-center items-center '>
             <span className=' invisible sm:visible sm:text-lg sm:font-bold '>Challenge Rappi</span>
-            <div className='bg-orange-600 rounded-tl-3xl rounded-br-3xl m-2   overflow-hidden'>
-                <h1 className=' text-3xl sm:text-3xl p-2 px-4 font-bold'>Tiendas “El Baratón”</h1>
+            <div className='bg-orange-600/80 rounded-tl-3xl rounded-br-3xl m-2 overflow-hidden'>
+                <h1 className=' text-xl sm:text-3xl p-2 px-4  font-semibold text-white'>Tiendas “El Baratón”</h1>
             </div>
             <Menu />
-            <div className=' absolute right-2 top-2   sm:right-4  xl:right-32'  >
-                <div className='bg-black/20 w-6 h-6 sm:h-8 sm:w-8 flex justify-center items-center rounded-full'>
+            <div className=' absolute right-2 top-2 ' >
+
+                <div className='lg:relative lg:right-44 2xl:right-64 bg-black/20 w-6 h-6 sm:h-8 sm:w-8 flex justify-center items-center rounded-full'>
                     <Link to="/cart">
                         <svg className='fill-white w-4 sm:w-8' xmlns="http://www.w3.org/2000/svg"
                             width="20px" height="20px" viewBox="0 0 20 20"  >

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import '../App.css'
 import { useDispatch } from 'react-redux'
 import { addCart } from '../redux/slices/index.js'
 

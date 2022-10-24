@@ -13,7 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @apply font-ubuntu max-w-screen-xl h-screen m-auto bg-amber-700
+  @apply font-ubuntu max-w-screen-lg h-screen m-auto bg-orange-600
 }
 
 * {

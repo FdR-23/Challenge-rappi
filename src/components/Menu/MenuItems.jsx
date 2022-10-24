@@ -28,12 +28,12 @@ function MenuItems({ category }) {
         <ul
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave} 
-        className=" border  rounded-sm bg-white/30" >
+        className=" bg-white/40 " >
             {category.sublevels && (
-                <div className='hover:bg-orange-600/30  active:bg-white/20' >
+                <div className='hover:bg-orange-600  active:bg-white/40 ' >
                     <button onClick={(e) => handleToggle(e)}
-                        className='w-w-22 sm: m-2px sm:mx-2 flex flex-row  justify-evenly items-center  hover:text-white '>
-                        <p className='font-bold'
+                        className='sm:w-w-22  sm:m-2px sm:mx-2 flex flex-row  justify-evenly items-center  hover:text-white '>
+                        <p className='font-bold text-sm sm:text-base'
                             onClick={() => handleClickName(category.id)}>{category.name}</p>
                         <svg
                             className="fill-current h-4 w-4 "
@@ -44,7 +44,7 @@ function MenuItems({ category }) {
                             />
                         </svg>
                     </button>
-                    {  window.innerWidth >= 635 && open && <Dropdown
+                    {  window.innerWidth >= 375 && open && <Dropdown
                         submenus={category.sublevels}
                         handleClickName={handleClickName} />}
                 </div>)}

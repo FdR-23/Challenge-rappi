@@ -5,14 +5,14 @@ import MenuItems from './MenuItems';
 
 function Dropdown({ submenus, handleClickName }) {
     return (
-        <ul className=' fixed bg-white/20 justify-center items-center '>
+        <ul className='fixed bg-orange-600/90 justify-center items-center hover:bg-white/40 text-sm sm:text-base'>
             {submenus && submenus.map((submenu, index) => (
                 submenu.sublevels ? <MenuItems
                     key={index}
                     category={submenu}
                 /> :
-                    <li className='w-w-22 m-2px my-1 sm:mx-2  flex flex-row  justify-center items-center  rounded-sm 
-                    hover:bg-slate-600 active:bg-slate-800 bg-white/30 cursor-pointer font-semibold
+                    <li className='sm:w-w-22 my-1 sm:m-2px  sm:mx-2  flex flex-row  justify-center items-center  rounded-sm 
+                    hover:bg-orange-600/90  active:bg-orange-800 bg-white/40 cursor-pointer font-semibold text-sm sm:text-base
                     hover:text-white'
                     key={index}>
                         <p className=''
