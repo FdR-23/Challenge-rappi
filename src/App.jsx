@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import Home from './components/Home.jsx';
+import Home from './pages/Home.jsx';
 import Cart from './components/Cart/Cart.jsx';
 
 function App() {

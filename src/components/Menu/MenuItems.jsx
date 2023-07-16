@@ -28,15 +28,15 @@ function MenuItems({ category }) {
         <ul
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave} 
-        className=" bg-white/40 " >
+        className="px-2 bg-white/40" >
             {category.sublevels && (
-                <div className='hover:bg-orange-600  active:bg-white/40 ' >
+                <div className='hover:bg-sky-600 active:bg-white/40 ' >
                     <button onClick={(e) => handleToggle(e)}
-                        className='sm:w-w-22  sm:m-2px sm:mx-2 flex flex-row  justify-evenly items-center  hover:text-white '>
-                        <p className='font-bold text-sm sm:text-base'
+                        className='flex flex-row items-center sm:w-w-22 sm:m-2px sm:mx-2 justify-evenly hover:text-white '>
+                        <p className='text-sm font-bold sm:text-base'
                             onClick={() => handleClickName(category.id)}>{category.name}</p>
                         <svg
-                            className="fill-current h-4 w-4 "
+                            className="w-4 h-4 fill-current "
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 20 20">
                             <path

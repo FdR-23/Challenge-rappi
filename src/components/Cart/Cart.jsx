@@ -23,27 +23,26 @@ function Cart() {
   }
 
   return (
-    <div className='flex flex-col justify-center items-center p-16 '>
-      <div className='relative w-80 sm:w-full bg-amber-500 
-      shadow-md rounded p-4'>
-        <div className='bg-orange-600/80 rounded-tl-3xl rounded-br-3xl m-2 overflow-hidden flex justify-center'>
-          <h2 className='text-2xl text-white font-bold uppercase sm:text-3xl'>Cart</h2>
+    <div className='flex flex-col items-center justify-center p-16 '>
+      <div className='relative p-4 rounded shadow-md w-80 sm:w-full bg-sky-800'>
+        <div className='flex justify-center p-2 my-4 overflow-hidden bg-sky-600/80 rounded-tl-3xl rounded-br-3xl'>
+          <h2 className='text-2xl font-bold text-white uppercase sm:text-3xl'>Cart</h2>
         </div>
-        <div className='bg-red-800 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex flex-row justify-center items-center
-        absolute right-1 top-1  font-semibold text-white'
+        <div className='absolute flex flex-row items-center justify-center w-5 h-5 font-semibold text-white rounded-full bg-sky-900 sm:w-6 sm:h-6 right-1 top-1'
         ><Link to='/'>X</Link></div>
+
         {cart && cart.map((product) =>
           <CartItem
             key={product.id}
             product={product} />
         )}
-        <div className='bg-orange-600/80  rounded-xl flex flex-row items-center justify-between px-4 '>
+        <div className='flex flex-row items-center justify-between px-4 bg-sky-600/80 rounded-xl '>
           <h3 className='text-lg font-medium text-white' >Total:</h3>
           <p className='text-xl font-bold text-white'>${totalPrices}</p>
         </div>
 
         <button
-          className='font-bold bg-white/40  p-2 my-2 rounded-md hover:text-white hover:bg-orange-600/80 '
+          className='p-2 my-2 font-bold rounded-md bg-white/40 hover:text-white hover:bg-sky-600/80 '
           onClick={() => handlebuyproducts()}>COMPRAR</button>
 
       </div>

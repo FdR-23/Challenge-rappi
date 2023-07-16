@@ -6,7 +6,8 @@ import data_p from '../../data/products.json'
 
 const localStorageCart = window.localStorage.getItem('cart')
 const cart = JSON.parse(localStorageCart)
-console.log(cart)
+
+
 const initialState = {
     categories: data_c.categories,
     products: data_p.products,
