@@ -18,7 +18,7 @@ function Home() {
     return (
         <div className='flex flex-col w-full h-full'>
             {/* Navbar vemos despues */}
-            <section className='border-b-4 bg-sky-800 border-x-2 border-b-slate-900 border-x-slate-900 rounded-b-2xl'>
+            <section className='border-b-4 bg-sky-700 border-x-2 border-b-slate-900 border-x-slate-900 rounded-b-2xl'>
                 <Navbar />
             </section>
 
